@@ -1,0 +1,54 @@
+.box-product {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.box-product-child > div {
+    margin-top: 20px;
+}
+
+.box-product-child:hover {
+    box-shadow: 0 0 20px 2px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+}
+
+.box-product > .box-product-child {
+    margin-top: 50px;
+    position: relative;
+    width: 25%;
+    text-align: center;
+    padding: 5px;
+    background-color: white;
+}
+
+.box-product-child-promotion {
+    line-height: 50px;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    background-color: #e15f41;
+    border-radius: 50%;
+    color: white;
+}
+
+.box-product-child-name a{
+    color: #303952;
+    text-decoration: none;
+    font-size: 15px;
+}
+
+.box-product-child-image{
+}
+
+.box-product-child-image img {
+}
+
+.box-product-child-price>strike {
+    color: gainsboro;
+}
+.box-product-child-price>span {
+    color: #e77f67;
+}

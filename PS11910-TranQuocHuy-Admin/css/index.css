@@ -1,0 +1,42 @@
+.addProduct a {
+    text-decoration: none;
+    color: #e77f67;
+}
+.addProduct a:hover {
+    text-decoration: underline;
+}
+footer {
+    width: 100%;
+    margin-top: 40px;
+    background-color: #e77f67;
+    padding: 2% 2%;
+    text-align: center;
+}
+footer i {
+    color: white;
+    
+}
+.right > .controls {
+    margin-top: 40px;
+}
+.right > .controls > button {
+    margin-right: 20px;
+    padding: 15px 20px;
+    font-size: 20px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    color: white;
+    border-radius: 50px;
+    border-radius: 50px;
+    background: #e77f67;
+    box-shadow: inset 20px 20px 60px #c46c58, 
+            inset -20px -20px 60px #ff9276;
+}
+.right > .controls > button:hover {
+    box-shadow: 0 0px 5px rgba(0, 0, 0, 0.5);   
+}
+#addCatalog, #showCatalog, #addProduct, #showProduct, #addDonHang, #showDonHang {
+    display: none;
+}

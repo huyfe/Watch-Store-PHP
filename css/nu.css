@@ -1,0 +1,16 @@
+.menu-left .start-top, .menu-left a:nth-child(1):hover~.animation {
+    width: 60px;
+    left: 0;
+}
+.menu-left .start-thuonghieu, .menu-left a:nth-child(2):hover~.animation {
+    width: 108px;
+    left: 23%;
+}
+.menu-left .start-nam, .menu-left a:nth-child(3):hover~.animation {
+    width: 35px;
+    left: 62%;
+}
+.menu-left .start-top, .menu-left a:nth-child(4):hover~.animation {
+    width: 30px;
+    left: 77%;
+}

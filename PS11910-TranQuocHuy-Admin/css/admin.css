@@ -1,0 +1,174 @@
+* {
+    box-sizing: border-box;
+}
+
+.box-header {
+    width: 100%;
+    min-height: 20vw;
+    background-image: url('../images/admin-bg2.jpg');
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
+/* Create New Products CSS */
+.title {
+    width: 100%;
+    background-color: #e15f41;
+    padding-left: 20px;
+    color: white;
+    font-weight: bolder;
+}
+form {
+    margin-top: 40px;
+    width: 100%;
+    border: 2px solid #e15f41;
+    border-radius: 5px;
+}
+
+table {
+    width: 100%;
+    border-spacing: 0;
+    padding: 15px;
+    min-height: 150px;
+    color: #303952;
+}
+
+
+#productId, #productName, #productImage, #productPrice, #productSale, #productBaoHanh, #productChongNuoc, #productSize, #productHang {
+    width: 98%;
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: #e15f41;
+}
+
+#create {
+    margin-top: 10px;
+    padding: 5px 8px;
+    width: 30%;
+    background-color: #e15f41;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+#create:hover {
+    background-color: #ff451c;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}
+/* End Create */
+
+/* Show Products CSS */
+table .th {
+    text-align: left;
+}
+
+.td-image {
+    width: 20%;
+}
+.icons-edit, .icons-delete {
+    color: white;
+    margin: 5px;
+    padding: 10px;
+    border-radius: 5px;
+}
+.icons-edit {
+    background-color: #3dc1d3;
+    transition: 0.5s;
+}
+.icons-edit:hover {
+    filter: brightness(80%);
+    transform: translateY(-3px);
+}
+
+.icons-delete {
+    background-color: #DC143C;
+    transition: 0.5s;
+}
+.icons-delete:hover {
+    filter: brightness(80%);
+    transform: translateY(-3px);
+}
+a {
+    text-decoration: none;
+}
+#btnXoa > button{
+    font-family: 'Quicksand', sans-serif;
+    text-align: left;
+    border: none;
+    color: #303952;
+    font-size: 17px;
+    font-weight: 700;
+    background-color: rgba(0, 0, 0, 0);
+}
+/* End products */
+.left {
+    border: 1px solid rgb(182, 182, 182);
+    border-radius: 5px;
+    margin-top: 40px;
+    width: 20%;
+    float: left;
+    background-color: rgb(255, 255, 255);
+}
+.right {
+    width: 75%;
+    float: right;
+    min-height: 300px;
+}
+.vertical-menu {
+    width: 100%;
+}
+  
+.vertical-menu>a {
+    background-color: #eee;
+    color: black;
+    display: block;
+    padding: 12px;
+    text-decoration: none;
+}
+  
+.vertical-menu a:hover {
+    color: white;
+    background-color: #e15f41;
+}
+  
+.vertical-menu a:focus {
+    outline: none;
+    background-color: #dd421f;
+    color: white;
+}
+#clickdropdown {
+    text-align: center;
+    cursor: pointer;
+}
+
+#clickdropdown:active #down {
+    transform: rotate(-90deg);
+}
+#dropdown {
+    display: none;
+}
+#dropdown a {
+    color: black;
+    display: block;
+    padding: 12px 50px;
+}
+#dropdown a:hover {
+    color: white;
+}
+
+.search-box {
+    top: 18%;
+    position: absolute;
+    right: 2%;
+    padding: 0;
+}
+.search-box input {
+    font-size: 15px;
+    border: none;
+    border-radius: 3px;
+    padding: 5px 7px;
+    font-size: 15px;
+}

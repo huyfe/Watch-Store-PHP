@@ -1,0 +1,89 @@
+.giohang {
+    width: 80%;
+    padding: 20px;
+    background-color: white;
+    border-radius: 5px;
+    float: left;
+}
+.giohang tr td{
+    border-bottom: 1px solid #eee;
+}
+.empty {
+    text-align: center;
+}
+.empty > div {
+    margin-top: 50px;
+}
+.empty p {
+    margin: 20px 0;
+    font-weight: bold;
+    font-size: 20px;
+}
+.empty a {
+    text-decoration: none;
+    padding: 5px 30px;
+    border-radius: 5px;
+    background-color: #e77f67;
+    color: white;
+}
+body {
+    background-color: #eeee;
+}
+.bg-white {
+    background-color: white;
+}
+.box-shadow {
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.2);
+}
+
+.giohang-tong {
+    padding: 20px;
+    width: 100%;
+    background-color: white;
+    border-radius: 5px;
+}
+.tong-giohang {
+    width: 100%;
+    border-bottom: 1px solid #eeee;
+}
+.tong-giohang h3 {
+    width: 100%;
+    text-align: center;
+    color: #e77f67;
+    margin-bottom: 10px;
+}
+.tong-giohang p {
+    margin-bottom: 10px;
+    color: #596275;
+}
+.tong-tien {
+    margin-top: 10px;
+}
+.tong-tien span {
+    color: #596275;
+}
+.tong-tien p {
+    margin: 10px 0;
+    color: red;
+    font-size: 25px;
+    font-weight: bolder;
+}
+.checkout {
+    margin-top: 10px;
+    width: 100%;
+    background-color: #e77f67;
+    text-align: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+.checkout a{
+    text-decoration: none;
+    color: whitesmoke;
+}
+.checkout:hover {
+    background-color: #f05330;
+}
+.wrap-giohang {
+    width: 18%;
+    float: right;
+}

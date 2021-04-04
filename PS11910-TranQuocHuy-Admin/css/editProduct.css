@@ -1,0 +1,47 @@
+body {
+    font-family: 'Quicksand', sans-serif;
+    background-color: #f7d794;
+}
+form {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    margin-top: 40px;
+    border: 2px solid #e15f41;
+    border-radius: 5px;
+}
+.title {
+    padding: 10px 0;
+    background-color: #e15f41;
+    padding-left: 20px;
+    color: white;
+    font-weight: bolder;
+}
+table {
+    padding: 10px 10px;
+}
+table tr th {
+    color: #e15f41;
+}
+table td input {
+    border: 1px solid #303952;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+#update {
+    margin-top: 10px;
+    padding: 5px 8px;
+    width: 80%;
+    background-color: #e15f41;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+#update:hover {
+    background-color: #ff451c;
+    box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.2);
+}

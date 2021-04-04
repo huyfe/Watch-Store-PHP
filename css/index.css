@@ -1,0 +1,221 @@
+.menu-left .start-top, .menu-left a:nth-child(1)~.animation {
+    opacity: 0;
+}
+.menu-left .start-top, .menu-left a:nth-child(1):hover~.animation {
+    width: 60px;
+    left: 0;
+    opacity: 100%;
+}
+.menu-left .start-thuonghieu, .menu-left a:nth-child(2):hover~.animation {
+    width: 108px;
+    left: 23%;
+    opacity: 100%;
+}
+.menu-left .start-nam, .menu-left a:nth-child(3):hover~.animation {
+    width: 35px;
+    left: 62%;
+    opacity: 100%;
+}
+.menu-left .start-nu, .menu-left a:nth-child(4):hover~.animation {
+    width: 30px;
+    left: 77%;
+    opacity: 100%;
+}
+
+.banner {
+    width: 100%;
+    min-height: 500px;
+    animation-name: move;
+    animation-duration: 2s;
+    animation-delay: 2s;
+    animation-iteration-count: infinite;
+    background-image: url('../images/banner.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+.promotion {
+    margin-top: 20px;
+}
+.promotion > .slogan {
+    text-align: center;
+    color: #303952;
+}
+.promotion > .slogan > p {
+    margin-top: 10px;
+    font-weight: 100;
+}
+.promotion > .baohanh {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.promotion > .baohanh > div {
+    width: 160px;
+    text-align: center;
+    font-size: 0.9vw;
+    padding: 5px;
+    transition: 0.5s;
+}
+.promotion > .baohanh > div:hover {
+    color: #e77f67;
+}
+
+.topsale {
+    margin-top: 50px;
+}
+.topsale > h1 {
+    text-align: center;
+    color: #303952;
+}
+
+.box-product-child-hot {
+    line-height: 50px;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    background-color: red;
+    border-radius: 50%;
+    color: white;
+}
+
+.viewall {
+    margin-top: 20px;
+    text-align: center;
+}
+.viewall > button {
+    cursor: pointer;
+    color: #e77f67;
+    font-size: 0.9vw;
+    border: 0.1em solid #e77f67;
+    border-radius: 0.5em;
+    width: 12em;
+    height: 3em;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-family: sans-serif;
+    letter-spacing: 0.1em;
+    text-align: center;
+    line-height: 2.5em;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    transition: 0.5s;
+    margin: 1em;
+}
+.viewall > button > span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: #e77f67;
+    transform: translateY(150%);
+    border-radius: 50%;
+    left: calc((var(--n) - 1) * 25%);
+    transition: 0.5s;
+    transition-delay: calc((var(--n) - 1) * 0.1s);
+    z-index: -1;
+}
+.viewall > button:hover {
+    color: black;
+}
+.viewall > button:hover span {
+    transform: translateY(0) scale(2);
+}
+.viewall > button span:nth-child(1) {
+    --n: 1;
+}
+.viewall > button span:nth-child(2) {
+    --n: 2;
+}
+.viewall > button span:nth-child(3) {
+    --n: 3;
+}
+.viewall > button span:nth-child(4) {
+    --n: 4;
+}
+
+.social {
+    margin-top: 40px;
+    background-color: black;
+}
+.wrap-social {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+.wrap-social > div {
+    width: 200px;
+    margin: 5px;
+    text-align: center;
+    line-height: 60px;
+    font-size: 30px;
+    padding: 5px;
+}
+.wrap-social a {
+    color: #e77f67;
+    text-decoration: none;
+    transition: 0.5s;
+}
+.wrap-social a:hover {
+    color: white;
+}
+
+/* CSS news */
+.news {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.news > .box-news {
+    position: relative;
+    width: 30%;
+    text-align: center;
+    overflow: hidden;
+}
+.news > .box-news > .box-news-image {
+    padding: 0;
+    width: 100%;
+    overflow: hidden;
+}
+.news > .box-news > .box-news-image img{
+    transition: transform 1.5s; /* Animation */
+    width: 100%;
+}
+.news > .box-news > .box-news-image img:hover{
+    transform: scale(1.2)
+}
+.news > .box-news > .box-news-content p {
+    color: #1f2536;
+    font-size: 1.3vw;
+    transition: 0.5s;
+}
+.news > .box-news > .box-news-content a {
+    text-decoration: none;
+    color: #303952;
+}
+.news > .box-news > .box-news-content p:hover {
+    color: #e77f67;
+}
+/* End CSS news */
+
+/* Footer CSS */
+footer {
+    padding: 15px;
+    margin-top: 30px;
+    background-color: #1a1f2e;
+    color: #898e99;
+}
+
+
+.bottom {
+    border-top: 1px solid rgb(61, 61, 61);
+    background-color: #1a1f2e;
+    text-align: center;
+    padding: 10px;
+    color: white;
+    width: 100%;
+}
