@@ -1,6 +1,6 @@
 <?php
 session_start();
-$dbh = new PDO('mysql:host=db;dbname=database', 'admin', 'test');
+require_once 'connectDB.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">

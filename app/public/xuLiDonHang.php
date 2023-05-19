@@ -1,8 +1,6 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +8,11 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-sweetalert/1.0.1/sweetalert.js"></script>
 </head>
+
 <body>
-<?php
+    <?php
     session_start();
-    $dbh = new PDO('mysql:host=localhost;dbname=lab03db', 'root', '');
+    require_once 'connectDB.php';
 
     //Lấy thông tin người đặt hàng
     $name = $_POST['name'];
@@ -22,12 +21,12 @@
     $address = $_POST['address'];
     $ngay = date('Y-m-d H:i:s'); // Năm - tháng - ngày - giờ hiện tại
     //Xử lý thêm vào bảng đơn hàng
-    $sql="insert into donhang(hoTen,soDienThoai,email,diaChi,ngayDat,status)
+    $sql = "insert into donhang(hoTen,soDienThoai,email,diaChi,ngayDat,status)
     values ('$name', '$phone', '$email', '$address', '$ngay', 'Chưa giao hàng')";
     $sth = $dbh->exec($sql);
 
     //Xử lý thêm vào bảng chitietdonhang
-    $madh=$dbh->lastInsertId();
+    $madh = $dbh->lastInsertId();
     foreach ($_SESSION['carts'] as $sp) {
         $masp = $sp['id'];
         $sl = $sp['quantity'];
@@ -48,8 +47,9 @@
                     });
                 </script>';
     unset($_SESSION['carts']);
-    
+
     //Xóa giỏ hàng vừa thêm vào database
-?>
+    ?>
 </body>
+
 </html>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,53 +13,54 @@
     <link rel="stylesheet" href="css/admin.css">
     <link rel="stylesheet" href="css/index.css">
 </head>
+
 <body>
-    <?php   
-        session_start();
-        if(!isset($_SESSION['admin'])) {
-            header('location: login.php');  
-        }
+    <?php
+    session_start();
+    if (!isset($_SESSION['admin'])) {
+        header('location: login.php');
+    }
 
-        $dbh = new PDO('mysql:host=localhost;dbname=lab03db', 'root', '');
-        $sql = "select * from products";
+    require_once 'connectDB.php';
+    $sql = "select * from products";
+    $result = $dbh->query($sql);
+
+    if (isset($_POST['btnSearch'])) {
+        $search = $_POST['search'];
+        $sql = "select * from products where pTen like '%" . $search . "%' ";
         $result = $dbh->query($sql);
+    }
 
-        if(isset($_POST['btnSearch'])) {
-            $search = $_POST['search'];
-            $sql = "select * from products where pTen like '%".$search."%' ";
-            $result = $dbh->query($sql);
+    if (isset($_POST['btnXoa'])) {
+        $str = $_POST['select'];
+        foreach ($str as $p => $index) {
+            echo $index . '<br/>';
+            $dbh->exec("delete from products where pMa = '$index'");
         }
-
-        if(isset($_POST['btnXoa'])) {
-            $str = $_POST['select'];
-            foreach($str as $p => $index) {
-                echo $index. '<br/>';
-                $dbh->exec("delete from products where pMa = '$index'");
-            }
-        }
+    }
     ?>
     <div class="rows">
         <header class="box-header">
         </header>
     </div>
 
-    
+
 
     <div class="rows">
         <div class="boxcenter">
             <div class="left">
                 <div class="vertical-menu">
                     <a id="clickdropdown">
-                        <i class="fa fa-user"></i> 
+                        <i class="fa fa-user"></i>
                         <?php
-                            echo $_SESSION['admin'];
+                        echo $_SESSION['admin'];
                         ?>
-                    <i id="down"  style="float: right" class="fa fa-sort-down"></i>
+                        <i id="down" style="float: right" class="fa fa-sort-down"></i>
                     </a>
-                        <div id="dropdown">
-                            <a href="logout.php"><i class="fa fa-sign-out"></i> Đăng xuất</a>
-                            <a href="changePassword.php"><i class="fa fa-exchange"></i> Đổi mật khẩu</a>
-                        </div>
+                    <div id="dropdown">
+                        <a href="logout.php"><i class="fa fa-sign-out"></i> Đăng xuất</a>
+                        <a href="changePassword.php"><i class="fa fa-exchange"></i> Đổi mật khẩu</a>
+                    </div>
                     <a href="index.php"><i class="fa fa-server"></i> Danh mục</a>
                     <a style="background-color: #dd421f; color: white" href="sanpham.php"><i class="fa fa-database"></i> Sản phẩm</a>
                     <a href="donhang.php"><i class="fa fa-address-book-o"></i> Đơn hàng</a>
@@ -66,8 +68,8 @@
             </div>
             <div class="right">
                 <div class="controls">
-                    <button id="btnAddProduct"> <i class="fa fa-plus"></i> Thêm Sản Phẩm</button> 
-                    <button id="btnShowProduct"> <i class="fa fa-plus"></i> Chỉnh Sửa Sản Phẩm</button> 
+                    <button id="btnAddProduct"> <i class="fa fa-plus"></i> Thêm Sản Phẩm</button>
+                    <button id="btnShowProduct"> <i class="fa fa-plus"></i> Chỉnh Sửa Sản Phẩm</button>
                 </div>
                 <form id="addProduct" action="createProduct.php" method="post">
                     <legend class="title"><i class="fa fa-plus"></i> Add New Product</legend>
@@ -84,13 +86,13 @@
                                 <div class="form-control">
                                     <input type="text" name="productName" id="productName" required>
                                 </div>
-                            </td>    
+                            </td>
                             <td>
                                 <label for="">Image</label>
                                 <div class="form-control">
                                     <input type="text" name="productImage" id="productImage" required>
                                 </div>
-                            </td>              
+                            </td>
                         </tr>
 
                         <tr>
@@ -128,9 +130,9 @@
                             </td>
                             <td>
                                 <label for="">Size</label>
-                                    <div class="form-control">
-                                        <input type="number" name="productSize" id="productSize">
-                                    </div>
+                                <div class="form-control">
+                                    <input type="number" name="productSize" id="productSize">
+                                </div>
                             </td>
                             <td>
                                 <label for="">Hãng</label>
@@ -165,19 +167,19 @@
                             <td>
                                 <label for="">Loại Kính</label>
                                 <div class="form-control">
-                                <input type="radio" id="mineral" name="productLoaiKinh" value="mineral-crystal">
-                                <label for="mineral">Mineral Crystal</label> <br>
-                                <input type="radio" id="sapphire" name="productLoaiKinh" value="sapphire"> 
-                                <label for="sapphire">Sapphire</label>
+                                    <input type="radio" id="mineral" name="productLoaiKinh" value="mineral-crystal">
+                                    <label for="mineral">Mineral Crystal</label> <br>
+                                    <input type="radio" id="sapphire" name="productLoaiKinh" value="sapphire">
+                                    <label for="sapphire">Sapphire</label>
                                 </div>
                             </td>
                             <td>
                                 <label for="">Giới Tính</label>
                                 <div class="form-control">
-                                <input type="radio" id="male" name="productGioiTinh" value="Nam">
-                                <label for="male">Nam</label> <br>
-                                <input type="radio" id="female" name="productGioiTinh" value="Nữ">
-                                <label for="female">Nữ</label>
+                                    <input type="radio" id="male" name="productGioiTinh" value="Nam">
+                                    <label for="male">Nam</label> <br>
+                                    <input type="radio" id="female" name="productGioiTinh" value="Nữ">
+                                    <label for="female">Nữ</label>
                                 </div>
                             </td>
                         </tr>
@@ -186,21 +188,21 @@
                             <td>
                                 <label for="">Loại Pin</label>
                                 <div class="form-control">
-                                <input type="radio" id="quartz" name="productLoaiPin" value="Quartz">
-                                <label for="quartz">Quartz</label> <br>
-                                <input type="radio" id="automatic" name="productLoaiPin" value="Automatic">
-                                <label for="automatic">Automatic</label>
+                                    <input type="radio" id="quartz" name="productLoaiPin" value="Quartz">
+                                    <label for="quartz">Quartz</label> <br>
+                                    <input type="radio" id="automatic" name="productLoaiPin" value="Automatic">
+                                    <label for="automatic">Automatic</label>
                                 </div>
                             </td>
                             <td colspan="2">
-                            <label for="">Mặt Đồng Hồ</label>
+                                <label for="">Mặt Đồng Hồ</label>
                                 <div class="form-control">
                                     <input type="radio" id="tron" name="productMat" value="Tròn">
                                     <label for="tron">Tròn</label> <br>
                                     <input type="radio" id="vuong" name="productMat" value="Vuông">
                                     <label for="vuong">Vuông</label>
                                 </div>
-                                
+
                             </td>
                         </tr>
 
@@ -231,56 +233,56 @@
 
                         <tr>
                             <td>
-                                <button type="submit"  id="create" name="btnLuu"><i class="fa fa-check-circle"></i> Lưu</button>
+                                <button type="submit" id="create" name="btnLuu"><i class="fa fa-check-circle"></i> Lưu</button>
                             </td>
                         </tr>
                     </table>
                 </form>
 
-                
-                <div class="rows">
-                <form id="showProduct" method="post" action="#"> 
-                    <table>
-                        <legend class="title">Show Products
-                            <div class="search-box">
-                                <input type="submit" name="btnSearch" value="Tìm kiếm">
-                                <input type="text" name="search" placeholder="Search...">
-                            </div>
-                        </legend>
-                        <tr>
-                            <th id="btnXoa" class="th"><button  type="submit" name="btnXoa" > <i class="fa fa-trash icons-delete"></i></button</th>
-                            <th class="th">Hình Ảnh</th>
-                            <th class="th">Tên Sản Phẩm</th>
-                            <th class="th">Mã Sản Phẩm</th>
-                            <th class="th">Hãng</th>
-                            <th class="th">Giới Tính</th>
-                            <th class="th">Actions</th>
-                        </tr>
 
-                        <?php
+                <div class="rows">
+                    <form id="showProduct" method="post" action="#">
+                        <table>
+                            <legend class="title">Show Products
+                                <div class="search-box">
+                                    <input type="submit" name="btnSearch" value="Tìm kiếm">
+                                    <input type="text" name="search" placeholder="Search...">
+                                </div>
+                            </legend>
+                            <tr>
+                                <th id="btnXoa" class="th"><button type="submit" name="btnXoa"> <i class="fa fa-trash icons-delete"></i></button< /th>
+                                <th class="th">Hình Ảnh</th>
+                                <th class="th">Tên Sản Phẩm</th>
+                                <th class="th">Mã Sản Phẩm</th>
+                                <th class="th">Hãng</th>
+                                <th class="th">Giới Tính</th>
+                                <th class="th">Actions</th>
+                            </tr>
+
+                            <?php
                             foreach ($result as $sp) {
                                 echo '
                                     <tr> 
                                         <td>
-                                            <input type="checkbox" value="'.$sp['pMa'].'" name="select[]">
+                                            <input type="checkbox" value="' . $sp['pMa'] . '" name="select[]">
                                         </td>
                                         <td class="td-image">
-                                            <img src="images/'.$sp['pAnh'].'" width="50%">
+                                            <img src="images/' . $sp['pAnh'] . '" width="50%">
                                         </td>
-                                        <td>'.$sp['pTen'].'</td>
-                                        <td>'.$sp['pMa'].'</td>
-                                        <td>'.$sp['pHang'].'</td>
-                                        <td>'.$sp['pGioiTinh'].'</td>
+                                        <td>' . $sp['pTen'] . '</td>
+                                        <td>' . $sp['pMa'] . '</td>
+                                        <td>' . $sp['pHang'] . '</td>
+                                        <td>' . $sp['pGioiTinh'] . '</td>
                                         <td> 
-                                            <a href="editProduct.php?pId='.$sp['pMa'].'" alt="Edit"> <i class="fa fa-edit icons-edit"></i> </a>
-                                            <a href="deleteProduct.php?pId='.$sp['pMa'].'"> <i class="fa fa-trash icons-delete"></i> </a>
+                                            <a href="editProduct.php?pId=' . $sp['pMa'] . '" alt="Edit"> <i class="fa fa-edit icons-edit"></i> </a>
+                                            <a href="deleteProduct.php?pId=' . $sp['pMa'] . '"> <i class="fa fa-trash icons-delete"></i> </a>
                                         </td>
                                     </tr>
                                 ';
                             }
-                        ?>
-                    </table>
-                </form>
+                            ?>
+                        </table>
+                    </form>
                 </div>
             </div>
         </div>
@@ -291,4 +293,5 @@
         </footer>
     </div>
 </body>
+
 </html>

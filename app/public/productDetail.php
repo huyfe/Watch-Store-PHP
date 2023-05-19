@@ -1,11 +1,13 @@
 <?php
-    session_start();
+session_start();
+require_once 'connectDB.php';
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PS11910 | Trần Quốc Huy | LAB 03</title>
     <link rel="stylesheet" href="css/productDetail.css">
@@ -19,9 +21,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/box-product.css">
     <script>
-        $(document).ready(function(){
-            $("#btnFilters").click(function(){
-            $("#wrap-filters").toggle();
+        $(document).ready(function() {
+            $("#btnFilters").click(function() {
+                $("#wrap-filters").toggle();
             });
         });
     </script>
@@ -29,25 +31,24 @@
 
 <body>
 
-    <?php 
-        if(isset($_GET['pId'])) {
-            $id = $_GET['pId'];
-            $dbh = new PDO('mysql:host=localhost;dbname=lab03db', 'root', '');
-            $sql = "select * from products where pMa='$id'";
-            $result=$dbh->query($sql);
-            //Lấy dòng đầu tiên
-            $row = $result->fetch(PDO::FETCH_ASSOC);
-            $gender = $row['pGioiTinh'];
-            $price = $row['pGia'];
-            $brand = $row['pHang'];
-            $sqllienquan = "select * from products where pGioiTinh like '$gender' and pHang like '$brand' 
+    <?php
+    if (isset($_GET['pId'])) {
+        $id = $_GET['pId'];
+        $sql = "select * from products where pMa='$id'";
+        $result = $dbh->query($sql);
+        //Lấy dòng đầu tiên
+        $row = $result->fetch(PDO::FETCH_ASSOC);
+        $gender = $row['pGioiTinh'];
+        $price = $row['pGia'];
+        $brand = $row['pHang'];
+        $sqllienquan = "select * from products where pGioiTinh like '$gender' and pHang like '$brand' 
             and pGia<'$price'+1000000 and pGia>'$price'-1000000";
-            $spLienQuan = $dbh->query($sqllienquan);
-        }
+        $spLienQuan = $dbh->query($sqllienquan);
+    }
     ?>
 
     <div class="container">
-        <!-- Start header --> 
+        <!-- Start header -->
         <header class="header">
             <div class="rows">
                 <div class="top">
@@ -57,26 +58,25 @@
                         </div>
                         <div class="top-right">
                             <a href="cart.php">
-                            <?php 
-                                if(isset($_SESSION['carts'])) {
-                                    $tong=0;
+                                <?php
+                                if (isset($_SESSION['carts'])) {
+                                    $tong = 0;
                                     $count = count($_SESSION['carts']);
-                                    foreach($_SESSION['carts'] as $cart) {
-                                        $tong += $cart['price']*$cart['quantity'];
+                                    foreach ($_SESSION['carts'] as $cart) {
+                                        $tong += $cart['price'] * $cart['quantity'];
                                     }
-                                    echo '<span>'.number_format($tong).' VNĐ</span>
+                                    echo '<span>' . number_format($tong) . ' VNĐ</span>
                                         <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
-                                        <span class="soluong">'.$count.'</span>
+                                        <span class="soluong">' . $count . '</span>
                                     ';
-                                }
-                                else {
+                                } else {
                                     echo '
                                         <span>0 VNĐ</span>
                                         <i style="font-size: 25px;" class="fa fa-shopping-cart"></i>
                                         <span class="soluong">0</span>
                                     ';
                                 }
-                            ?>
+                                ?>
                             </a>
                         </div>
                     </div>
@@ -111,55 +111,54 @@
                     </nav>
                 </div>
             </div>
-        </header> <!-- End header --> 
+        </header> <!-- End header -->
 
         <div class="rows">
             <div class="title">
                 <div class="boxcenter">
                     <button onclick="back()"><i style="font-size: 24px" class="fas fa-arrow-circle-left"></i></button>
-                    <?php 
-                        echo '<h2>ĐỒNG HỒ '.$row['pTen'].'</h2>';
+                    <?php
+                    echo '<h2>ĐỒNG HỒ ' . $row['pTen'] . '</h2>';
                     ?>
                 </div>
             </div>
         </div>
 
-        
+
         <div class="rows">
             <div class="boxcenter">
                 <div class="head">
                     <div class="left">
                         <a href="#"><i class="fa fa-fw fa-home"></i> Huywatch.com >> </a>
-                        <?php 
-                        if(isset($_GET['pId'])) {
+                        <?php
+                        if (isset($_GET['pId'])) {
                             $id = $_GET['pId'];
-                            $dbh = new PDO('mysql:host=localhost;dbname=lab03db', 'root', '');
                             $sql = "select * from products where pMa='$id'";
-                            $result=$dbh->query($sql);
+                            $result = $dbh->query($sql);
                             //Lấy dòng đầu tiên
                             $row = $result->fetch(PDO::FETCH_ASSOC);
-                            echo 'Đồng Hồ '.$row['pTen'].'';
+                            echo 'Đồng Hồ ' . $row['pTen'] . '';
                         }
                         ?>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <div class="rows">
             <div class="boxcenter">
                 <div class="product-detail">
                     <div class="product-image">
-                    <?php
+                        <?php
                         echo '  
                         <div class="product-image-origin">
-                            <img src="images/'.$row['pAnh'].'" alt="">
+                            <img src="images/' . $row['pAnh'] . '" alt="">
                         </div>
                         <div class="product-image-list">
-                            <img src="images/'.$row['pAnh'].'" alt="">
-                            <img src="images/'.$row['pAnh'].'" alt="">
-                            <img src="images/'.$row['pAnh'].'" alt="">
-                            <img src="images/'.$row['pAnh'].'" alt="">
+                            <img src="images/' . $row['pAnh'] . '" alt="">
+                            <img src="images/' . $row['pAnh'] . '" alt="">
+                            <img src="images/' . $row['pAnh'] . '" alt="">
+                            <img src="images/' . $row['pAnh'] . '" alt="">
                         </div>
                         ';
                         ?>
@@ -168,7 +167,7 @@
                     <div class="product-info">
                         <table class="product">
                             <?php
-                                echo '
+                            echo '
                                 <tr>
                                     <td>Thông tin sản phẩm</td>
                                 </tr>
@@ -176,7 +175,7 @@
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td><h2 class="name">'.$row['pTen'].'</h2></td>
+                                    <td><h2 class="name">' . $row['pTen'] . '</h2></td>
                                 </tr>
                                 <tr>
                                     <td class="rating">
@@ -188,21 +187,21 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><h2 class="price">'.number_format($row['pGia']).' vnđ</h2></td>
+                                    <td><h2 class="price">' . number_format($row['pGia']) . ' vnđ</h2></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                 </tr>
                                 <tr>
                                     <td><p class="mo-ta">
-                                    '.$row['pMoTa'].'
+                                    ' . $row['pMoTa'] . '
                                     </p></td>
                                 </tr>
                                 <tr>
                                     <td></td>
                                 </tr>
                                 <tr>
-                                    <td class="add-cart"><a href="xulyCart.php?pId='.$row['pMa'].'">Thêm vào giỏ</a></td>
+                                    <td class="add-cart"><a href="xulyCart.php?pId=' . $row['pMa'] . '">Thêm vào giỏ</a></td>
                                 </tr>
                                 ';
                             ?>
@@ -215,52 +214,54 @@
         <div class="rows bg-gray mt">
             <div class="boxcenter">
                 <table class="infor">
-                    <legend><h3>Thông tin bổ sung</h3></legend>
-                    <?php 
-                        echo '
+                    <legend>
+                        <h3>Thông tin bổ sung</h3>
+                    </legend>
+                    <?php
+                    echo '
                         <tr>
                             <td>Bảo hành chính hãng</td>
-                            <td>'.$row['pBaoHanh'].' năm</td>
+                            <td>' . $row['pBaoHanh'] . ' năm</td>
                         </tr>
                         <tr>
                             <td>Chống nước</td>
-                            <td>'.$row['pChongNuoc'].'</td>
+                            <td>' . $row['pChongNuoc'] . '</td>
                         </tr>
                         <tr>
                             <td>Dạng mặt số</td>
-                            <td>'.$row['pMat'].'</td>
+                            <td>' . $row['pMat'] . '</td>
                         </tr>
                         <tr>
                             <td>Giới tính</td>
-                            <td>'.$row['pGioiTinh'].'</td>
+                            <td>' . $row['pGioiTinh'] . '</td>
                         </tr>
                         <tr>
                             <td>Hãng</td>
-                            <td>'.$row['pHang'].'</td>
+                            <td>' . $row['pHang'] . '</td>
                         </tr>
                         <tr>
                             <td>Loại dây</td>
-                            <td>'.$row['pLoaiDay'].'</td>
+                            <td>' . $row['pLoaiDay'] . '</td>
                         </tr>
                         <tr>
                             <td>Loại kính</td>
-                            <td>'.$row['pLoaiKinh'].'</td>
+                            <td>' . $row['pLoaiKinh'] . '</td>
                         </tr>
                         <tr>
                             <td>Loại máy</td>
-                            <td>'.$row['pLoaiMay'].'</td>
+                            <td>' . $row['pLoaiMay'] . '</td>
                         </tr>
                         <tr>
                             <td>Size mặt số</td>
-                            <td>'.$row['pSize'].'</td>
+                            <td>' . $row['pSize'] . '</td>
                         </tr>
                         <tr>
                             <td>Thương hiệu</td>
-                            <td>'.$row['pThuongHieu'].'</td>
+                            <td>' . $row['pThuongHieu'] . '</td>
                         </tr>
                         <tr>
                             <td>Nơi sản xuất đồng hồ</td>
-                            <td>'.$row['pNoiSanXuat'].'</td>
+                            <td>' . $row['pNoiSanXuat'] . '</td>
                         </tr>
                         ';
                     ?>
@@ -278,46 +279,46 @@
                         <h1>Sản phẩm liên quan</h1>
                     </div>
                     <div class="box-product">
-                    <?php
-                        foreach($spLienQuan as $sp) {
+                        <?php
+                        foreach ($spLienQuan as $sp) {
                             echo '
                             <div class="box-product-child">
                                 <div class="box-product-child-promotion">
-                                    <span>-'.$sp['pGiamGia'].'%</span>
+                                    <span>-' . $sp['pGiamGia'] . '%</span>
                                 </div>
                                 <div class="box-product-child-img">
-                                    <a href="productDetail.php?pId='.$sp['pMa'].'"><img width="100%" src="images/'.$sp['pAnh'].'" alt=""></a>
+                                    <a href="productDetail.php?pId=' . $sp['pMa'] . '"><img width="100%" src="images/' . $sp['pAnh'] . '" alt=""></a>
                                 </div>
                                 <div class="box-product-child-name">
-                                    <a href="productDetail.php?pId='.$sp['pMa'].'">'.$sp['pTen'].'</a>
+                                    <a href="productDetail.php?pId=' . $sp['pMa'] . '">' . $sp['pTen'] . '</a>
                                 </div>
                                 <div class="box-product-child-price">
-                                    <span>'.$sp['pGia'].' VNĐ</span>
+                                    <span>' . $sp['pGia'] . ' VNĐ</span>
                                 </div>
                             </div>
                             ';
                         }
-                    ?>
+                        ?>
                     </div>
                 </div>
             </div>
         </div>
-        
+
         <!-- Liên kết mạng xã hội -->
         <div class="rows">
             <div class="social">
                 <div class="wrap-social">
                     <div class="facebook">
                         <a href="#"><i class="fab fa-facebook-f"></i>
-                        <span>Facebook</span></a>
+                            <span>Facebook</span></a>
                     </div>
                     <div class="youtube">
                         <a href="#"><i class='fab fa-youtube'></i>
-                        <span>Youtube</span></a>
+                            <span>Youtube</span></a>
                     </div>
                     <div class="instagram">
                         <a href="#"><i class='fab fa-instagram'></i>
-                        <span>Instagram</span></a>
+                            <span>Instagram</span></a>
                     </div>
                 </div>
             </div>
@@ -328,7 +329,7 @@
         <div class="rows">
             <footer>
                 <div class="boxcenter">
-                    <div id="filters" class="filters" >
+                    <div id="filters" class="filters">
                         <div>
                             <h6>Sắp xếp theo</h6>
                             <a href="filters.php?cId=1">Mới nhất</a>
@@ -365,7 +366,7 @@
                     <p>Copyright @ Tran Quoc Huy</p>
                 </div>
             </div>
-        </div> <!-- End Footer --> 
+        </div> <!-- End Footer -->
     </div>
 </body>
 

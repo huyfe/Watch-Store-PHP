@@ -1,3 +1,6 @@
+<?php
+require_once 'connectDB.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -14,9 +17,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="css/box-product.css">
     <script>
-        $(document).ready(function(){
-            $("#btnFilters").click(function(){
-            $("#wrap-filters").toggle();
+        $(document).ready(function() {
+            $("#btnFilters").click(function() {
+                $("#wrap-filters").toggle();
             });
         });
     </script>
@@ -87,21 +90,21 @@
                     <div class="flex-container">
                         <div><a href="#"><img src="images/casio.png" alt=""></a></div>
                         <div><a href="#"><img src="images/edifice.png" alt=""></a></div>
-                        <div><a href="#"><img src="images/gshock.png" alt=""></a></div>  
+                        <div><a href="#"><img src="images/gshock.png" alt=""></a></div>
                         <div><a href="#"><img src="images/olym.png" alt=""></a></div>
                         <div><a href="#"><img src="images/orient.png" alt=""></a></div>
-                        <div><a href="#"><img src="images/citizen.png" alt=""></a></div>  
+                        <div><a href="#"><img src="images/citizen.png" alt=""></a></div>
                         <div><a href="#"><img src="images/daniel.png" alt=""></a></div>
                         <div><a href="#"><img src="images/mvmt.png" alt=""></a></div>
-                        <div><a href="#"><img src="images/fossil.png" alt=""></a></div>  
+                        <div><a href="#"><img src="images/fossil.png" alt=""></a></div>
                         <div><a href="#"><img src="images/seiko.png" alt=""></a></div>
                         <div><a href="#"><img src="images/tissot.png" alt=""></a></div>
-                        <div><a href="#"><img src="images/calvin.png" alt=""></a></div>  
-                        <div><a href="#"><img src="images/ogival.png" alt=""></a></div>  
+                        <div><a href="#"><img src="images/calvin.png" alt=""></a></div>
+                        <div><a href="#"><img src="images/ogival.png" alt=""></a></div>
                         <div><a href="#"><img src="images/olympia.png" alt=""></a></div>
                         <div><a href="#"><img src="images/zrc.png" alt=""></a></div>
-                        <div><a href="#"><img src="images/sale.png" alt=""></a></div>  
-                      </div>
+                        <div><a href="#"><img src="images/sale.png" alt=""></a></div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -122,70 +125,69 @@
         <div class="rows">
             <div class="boxcenter">
                 <div id="wrap-filters">
-                <div id="filters" class="filters" >
-                    <div>
-                        <h6>Sắp xếp theo</h6>
-                        <a href="#">Mới nhất</a>
-                        <a href="#">Giá từ thấp đến cao</a>
-                        <a href="#">Giá từ cao xuống thấp</a>
+                    <div id="filters" class="filters">
+                        <div>
+                            <h6>Sắp xếp theo</h6>
+                            <a href="#">Mới nhất</a>
+                            <a href="#">Giá từ thấp đến cao</a>
+                            <a href="#">Giá từ cao xuống thấp</a>
+                        </div>
+                        <div>
+                            <h6>Giới tính</h6>
+                            <a href="#">Nam</a>
+                            <a href="#">Nữ</a>
+                        </div>
+                        <div>
+                            <h6>Chất liệu dây</h6>
+                            <a href="#">Dây Da Bò Cao Cấp</a>
+                            <a href="#">Dây Inox (Thép không gỉ)</a>
+                            <a href="#">Dây Vải</a>
+                            <a href="#">Dây Cao Su (Nhựa)</a>
+                            <a href="#">Dây Da</a>
+                            <a href="#">Dây lưới</a>
+                        </div>
+                        <div>
+                            <h6>Loại máy</h6>
+                            <a href="#">Cơ Tự Động (Automatic)</a>
+                            <a href="#">Eco-drive (Năng lượng ánh sáng)</a>
+                            <a href="#">Kinetic (Tự động - Pin)</a>
+                            <a href="#">Pin (Quartz)</a>
+                            <a href="#">Solor (Năng lượng ánh sáng mặt trời)</a>
+                        </div>
                     </div>
-                    <div>
-                        <h6>Giới tính</h6>
-                        <a href="#">Nam</a>
-                        <a href="#">Nữ</a>
-                    </div>
-                    <div>
-                        <h6>Chất liệu dây</h6>
-                        <a href="#">Dây Da Bò Cao Cấp</a>
-                        <a href="#">Dây Inox (Thép không gỉ)</a>
-                        <a href="#">Dây Vải</a>
-                        <a href="#">Dây Cao Su (Nhựa)</a>
-                        <a href="#">Dây Da</a>
-                        <a href="#">Dây lưới</a>
-                    </div>
-                    <div>
-                        <h6>Loại máy</h6>
-                        <a href="#">Cơ Tự Động (Automatic)</a>
-                        <a href="#">Eco-drive (Năng lượng ánh sáng)</a>
-                        <a href="#">Kinetic (Tự động - Pin)</a>
-                        <a href="#">Pin (Quartz)</a>
-                        <a href="#">Solor (Năng lượng ánh sáng mặt trời)</a>
-                    </div>
-                </div>
                 </div>
             </div>
         </div>
 
-    <?php 
-        $dbh = new PDO('mysql:host=localhost;dbname=lab03db', 'root', '');
+        <?php
         $sql = "select * from products where pGioiTinh like 'Nữ' ";
-        $result = $dbh -> query($sql);
-    ?>
-    <div class="rows">
-        <div class="boxcenter">
-            <div class="box-product">
-                <?php
-                    foreach($result as $sp) {
+        $result = $dbh->query($sql);
+        ?>
+        <div class="rows">
+            <div class="boxcenter">
+                <div class="box-product">
+                    <?php
+                    foreach ($result as $sp) {
                         echo '
                         <div class="box-product-child">
                             <div class="box-product-child-promotion">
-                                <span>-'.$sp['pGiamGia'].'%</span>
+                                <span>-' . $sp['pGiamGia'] . '%</span>
                             </div>
                             <div class="box-product-child-img">
-                                <a href="productDetail.php?pId='.$sp['pMa'].'"><img src="images/'.$sp['pAnh'].'" alt=""></a>
+                                <a href="productDetail.php?pId=' . $sp['pMa'] . '"><img src="images/' . $sp['pAnh'] . '" alt=""></a>
                             </div>
                             <div class="box-product-child-name">
-                                <a href="productDetail.php?pId='.$sp['pMa'].'">'.$sp['pTen'].'</a>
+                                <a href="productDetail.php?pId=' . $sp['pMa'] . '">' . $sp['pTen'] . '</a>
                             </div>
                             <div class="box-product-child-price">
-                                <span>'.$sp['pGia'].' VNĐ</span>
+                                <span>' . $sp['pGia'] . ' VNĐ</span>
                             </div>
                         </div>
                         ';
                     }
-                ?>
+                    ?>
+                </div>
             </div>
-        </div>
         </div>
     </div>
 </body>
